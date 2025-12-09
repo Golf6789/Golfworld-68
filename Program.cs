@@ -1,54 +1,61 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ConsoleApp1
+class Program
 {
-    internal class Program
+    static void Main()
     {
-        static void Main(string[] args)
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
+        Console.WriteLine("โปรแกรมแปลงคะแนนเป็นเกรด (พิมพ์ 'exit' เพื่อออกจากโปรแกรม)\n");
+
+        while (true)
         {
-            Console.Write("Please enter your birth year (AD): ");
-            string input = Console.ReadLine();
+            Console.Write("กรอกคะแนน 0-100 (หรือพิมพ์ 'exit'): ");
+            string input = Console.ReadLine()?.Trim();
 
-            if (int.TryParse(input, out int year))
+            if (string.IsNullOrEmpty(input))
             {
-                string generation = GetGeneration(year);
-                Console.WriteLine($"Your generation is: {generation}");
-            }
-            else
-            {
-                Console.WriteLine("Please enter a valid birth year!");
+                Console.WriteLine("❗ ไม่ได้รับข้อมูล กรุณาลองใหม่.\n");
+                continue;
             }
 
-            Console.WriteLine("Press any key to exit...");
-            Console.ReadKey();
-        }
+            if (input.Equals("exit", StringComparison.OrdinalIgnoreCase))
+            {
+                Console.WriteLine("ออกจากโปรแกรม...");
+                break;
+            }
 
-        static string GetGeneration(int year)
-        {
-            if (year <= 1980)
+            double score;
+            if (!double.TryParse(input, out score))
             {
-                return "Generation X (Gen X)";
+                Console.WriteLine("❗ ข้อผิดพลาด: กรุณากรอกตัวเลขหรือพิมพ์ 'exit' เพื่อออก.\n");
+                continue;
             }
-            else if (year >= 1981 && year <= 1996)
+
+            if (score < 0 || score > 100)
             {
-                return "Generation Y (Millennials)";
+                Console.WriteLine("❗ ข้อผิดพลาด: คะแนนต้องอยู่ระหว่าง 0 ถึง 100 เท่านั้น.\n");
+                continue;
             }
-            else if (year >= 1997 && year <= 2012)
-            {
-                return "Generation Z (Gen Z)";
-            }
-            else if (year >= 2013)
-            {
-                return "Generation Alpha";
-            }
-            else
-            {
-                return "Unknown Generation";
-            }
-        }
+
+            int rounded = (int)Math.Round(score);
+
+            string grade = GetGrade(rounded);
+
+            Console.WriteLine($"\nคะแนน (ปัด): {rounded} -> เกรด: {grade}\n");
+
+            Console.WriteLine("กด Enter เพื่อกรอกคะแนนใหม่ หรือพิมพ์ 'exit' เพื่อออก\n");
+        } 
+    }
+
+    static string GetGrade(int score)
+    {
+        if (score >= 80 && score <= 100) return "A";
+        if (score >= 75 && score <= 79) return "B+";
+        if (score >= 70 && score <= 74) return "B";
+        if (score >= 65 && score <= 69) return "C+";
+        if (score >= 60 && score <= 64) return "C";
+        if (score >= 55 && score <= 59) return "D+";
+        if (score >= 50 && score <= 54) return "D";
+        return "F";
     }
 }
