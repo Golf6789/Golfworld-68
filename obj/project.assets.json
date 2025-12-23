@@ -8,19 +8,19 @@
     "net10.0": []
   },
   "packageFolders": {
-    "C:\\Users\\NK 2316\\.nuget\\packages\\": {}
+    "C:\\Users\\kwanb\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\NK 2316\\source\\repos\\ConsoleApp2\\ConsoleApp2\\ConsoleApp2.csproj",
+      "projectUniqueName": "C:\\Users\\kwanb\\source\\repos\\ConsoleApp2\\ConsoleApp2\\ConsoleApp2.csproj",
       "projectName": "ConsoleApp2",
-      "projectPath": "C:\\Users\\NK 2316\\source\\repos\\ConsoleApp2\\ConsoleApp2\\ConsoleApp2.csproj",
-      "packagesPath": "C:\\Users\\NK 2316\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\NK 2316\\source\\repos\\ConsoleApp2\\ConsoleApp2\\obj\\",
+      "projectPath": "C:\\Users\\kwanb\\source\\repos\\ConsoleApp2\\ConsoleApp2\\ConsoleApp2.csproj",
+      "packagesPath": "C:\\Users\\kwanb\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\kwanb\\source\\repos\\ConsoleApp2\\ConsoleApp2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\NK 2316\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\kwanb\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -67,7 +67,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.CSharp": "(,4.7.32767]",
           "Microsoft.VisualBasic": "(,10.4.32767]",

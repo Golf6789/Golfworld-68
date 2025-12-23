@@ -1,61 +1,83 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
-class Program
+namespace ConsoleApp2
 {
-    static void Main()
+    class Program
     {
-        Console.OutputEncoding = System.Text.Encoding.UTF8;
-        Console.WriteLine("โปรแกรมแปลงคะแนนเป็นเกรด (พิมพ์ 'exit' เพื่อออกจากโปรแกรม)\n");
-
-        while (true)
+        static void Main(string[] args)
         {
-            Console.Write("กรอกคะแนน 0-100 (หรือพิมพ์ 'exit'): ");
-            string input = Console.ReadLine()?.Trim();
+            Console.WriteLine("กรุณาป้อนตัวเลข (คั่นด้วยช่องว่าง):");
+            string input = Console.ReadLine();
 
-            if (string.IsNullOrEmpty(input))
+            List<double> numbers = input
+                .Split(' ')
+                .Select(double.Parse)
+                .ToList();
+
+            Console.WriteLine($"ค่าเฉลี่ย: {Average(numbers)}");
+            Console.WriteLine($"ค่าสูงสุด: {Max(numbers)}");
+            Console.WriteLine($"ค่าต่ำสุด: {Min(numbers)}");
+            Console.WriteLine($"ค่ากลางข้อมูล (Median): {Median(numbers)}");
+
+            Console.WriteLine("\nเรียงจากมากไปน้อย:");
+            DisplayDescending(numbers);
+
+            Console.WriteLine("\nเรียงจากน้อยไปมาก:");
+            DisplayAscending(numbers);
+
+            Console.ReadLine();
+        }
+
+        // ค่าเฉลี่ย
+        static double Average(List<double> nums)
+        {
+            return nums.Average();
+        }
+
+        // ค่าสูงสุด
+        static double Max(List<double> nums)
+        {
+            return nums.Max();
+        }
+
+        // ค่าต่ำสุด
+        static double Min(List<double> nums)
+        {
+            return nums.Min();
+        }
+
+        // ค่ากลางข้อมูล (Median)
+        static double Median(List<double> nums)
+        {
+            var sorted = nums.OrderBy(n => n).ToList();
+            int count = sorted.Count;
+
+            if (count % 2 == 0)
+                return (sorted[count / 2 - 1] + sorted[count / 2]) / 2;
+            else
+                return sorted[count / 2];
+        }
+
+        // เรียงจากน้อยไปมาก
+        static void DisplayAscending(List<double> nums)
+        {
+            foreach (var n in nums.OrderBy(n => n))
             {
-                Console.WriteLine("❗ ไม่ได้รับข้อมูล กรุณาลองใหม่.\n");
-                continue;
+                Console.Write(n + " ");
             }
+            Console.WriteLine();
+        }
 
-            if (input.Equals("exit", StringComparison.OrdinalIgnoreCase))
+        // เรียงจากมากไปน้อย
+        static void DisplayDescending(List<double> nums)
+        {
+            foreach (var n in nums.OrderByDescending(n => n))
             {
-                Console.WriteLine("ออกจากโปรแกรม...");
-                break;
+                Console.Write(n + " ");
             }
-
-            double score;
-            if (!double.TryParse(input, out score))
-            {
-                Console.WriteLine("❗ ข้อผิดพลาด: กรุณากรอกตัวเลขหรือพิมพ์ 'exit' เพื่อออก.\n");
-                continue;
-            }
-
-            if (score < 0 || score > 100)
-            {
-                Console.WriteLine("❗ ข้อผิดพลาด: คะแนนต้องอยู่ระหว่าง 0 ถึง 100 เท่านั้น.\n");
-                continue;
-            }
-
-            int rounded = (int)Math.Round(score);
-
-            string grade = GetGrade(rounded);
-
-            Console.WriteLine($"\nคะแนน (ปัด): {rounded} -> เกรด: {grade}\n");
-
-            Console.WriteLine("กด Enter เพื่อกรอกคะแนนใหม่ หรือพิมพ์ 'exit' เพื่อออก\n");
-        } 
-    }
-
-    static string GetGrade(int score)
-    {
-        if (score >= 80 && score <= 100) return "A";
-        if (score >= 75 && score <= 79) return "B+";
-        if (score >= 70 && score <= 74) return "B";
-        if (score >= 65 && score <= 69) return "C+";
-        if (score >= 60 && score <= 64) return "C";
-        if (score >= 55 && score <= 59) return "D+";
-        if (score >= 50 && score <= 54) return "D";
-        return "F";
+            Console.WriteLine();
+        }
     }
 }
