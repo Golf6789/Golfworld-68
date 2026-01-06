@@ -1,83 +1,93 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 
-namespace ConsoleApp2
+namespace ConsoleApp3
 {
     class Program
     {
+        static int water = 2000;
+        static int coffee = 500;
+        static int milk = 300;
+        static int chocolate = 300;
+
         static void Main(string[] args)
         {
-            Console.WriteLine("กรุณาป้อนตัวเลข (คั่นด้วยช่องว่าง):");
-            string input = Console.ReadLine();
+            int choice;
 
-            List<double> numbers = input
-                .Split(' ')
-                .Select(double.Parse)
-                .ToList();
+            do
+            {
+                ShowMenu();
+                Console.Write("Select menu: ");
+                choice = int.Parse(Console.ReadLine());
 
-            Console.WriteLine($"ค่าเฉลี่ย: {Average(numbers)}");
-            Console.WriteLine($"ค่าสูงสุด: {Max(numbers)}");
-            Console.WriteLine($"ค่าต่ำสุด: {Min(numbers)}");
-            Console.WriteLine($"ค่ากลางข้อมูล (Median): {Median(numbers)}");
+                switch (choice)
+                {
+                    case 1:
+                        MakeDrink(300, 20, 0, 0, "Black Coffee");
+                        break;
+                    case 2:
+                        MakeDrink(300, 20, 0, 10, "Mocha");
+                        break;
+                    case 3:
+                        MakeDrink(300, 20, 10, 0, "Latte");
+                        break;
+                    case 4:
+                        MakeDrink(300, 0, 0, 20, "Chocolate");
+                        break;
+                    case 0:
+                        Console.WriteLine("Exit program");
+                        break;
+                    default:
+                        Console.WriteLine("Invalid menu selection");
+                        break;
+                }
 
-            Console.WriteLine("\nเรียงจากมากไปน้อย:");
-            DisplayDescending(numbers);
-
-            Console.WriteLine("\nเรียงจากน้อยไปมาก:");
-            DisplayAscending(numbers);
-
-            Console.ReadLine();
+                Console.WriteLine();
+            }
+            while (choice != 0);
         }
 
-        // ค่าเฉลี่ย
-        static double Average(List<double> nums)
+        static void ShowMenu()
         {
-            return nums.Average();
+            Console.WriteLine("====== Automatic Coffee Machine ======");
+            Console.WriteLine("1. Black Coffee");
+            Console.WriteLine("2. Mocha");
+            Console.WriteLine("3. Latte");
+            Console.WriteLine("4. Chocolate");
+            Console.WriteLine("0. Exit");
+            Console.WriteLine("=====================================");
         }
 
-        // ค่าสูงสุด
-        static double Max(List<double> nums)
+        static void MakeDrink(int w, int c, int m, int ch, string name)
         {
-            return nums.Max();
-        }
+            if (CheckIngredient(w, c, m, ch))
+            {
+                water -= w;
+                coffee -= c;
+                milk -= m;
+                chocolate -= ch;
 
-        // ค่าต่ำสุด
-        static double Min(List<double> nums)
-        {
-            return nums.Min();
-        }
-
-        // ค่ากลางข้อมูล (Median)
-        static double Median(List<double> nums)
-        {
-            var sorted = nums.OrderBy(n => n).ToList();
-            int count = sorted.Count;
-
-            if (count % 2 == 0)
-                return (sorted[count / 2 - 1] + sorted[count / 2]) / 2;
+                Console.WriteLine($"Brewing {name} ... ☕");
+                Console.WriteLine($"{name} is ready!");
+            }
             else
-                return sorted[count / 2];
+            {
+                Console.WriteLine("Not enough ingredients. Refilling...");
+                Refill();
+                Console.WriteLine("Refill completed. Please select again.");
+            }
         }
 
-        // เรียงจากน้อยไปมาก
-        static void DisplayAscending(List<double> nums)
+        static bool CheckIngredient(int w, int c, int m, int ch)
         {
-            foreach (var n in nums.OrderBy(n => n))
-            {
-                Console.Write(n + " ");
-            }
-            Console.WriteLine();
+            return water >= w && coffee >= c && milk >= m && chocolate >= ch;
         }
 
-        // เรียงจากมากไปน้อย
-        static void DisplayDescending(List<double> nums)
+        static void Refill()
         {
-            foreach (var n in nums.OrderByDescending(n => n))
-            {
-                Console.Write(n + " ");
-            }
-            Console.WriteLine();
+            water = 2000;
+            coffee = 500;
+            milk = 300;
+            chocolate = 300;
         }
     }
 }
