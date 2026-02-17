@@ -1,0 +1,4 @@
+C:\Users\kwanb\source\repos\ConsoleApp5\ConsoleApp5\obj\Debug\net10.0\ConsoleApp5.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kwanb\source\repos\ConsoleApp5\ConsoleApp5\obj\Debug\net10.0\ConsoleApp5.AssemblyInfoInputs.cache
+C:\Users\kwanb\source\repos\ConsoleApp5\ConsoleApp5\obj\Debug\net10.0\ConsoleApp5.AssemblyInfo.cs
+C:\Users\kwanb\source\repos\ConsoleApp5\ConsoleApp5\obj\Debug\net10.0\ConsoleApp5.csproj.CoreCompileInputs.cache
