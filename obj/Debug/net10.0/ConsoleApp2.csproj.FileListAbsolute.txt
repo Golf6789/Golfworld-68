@@ -1,4 +1,0 @@
-C:\Users\kwanb\source\repos\ConsoleApp2\ConsoleApp2\obj\Debug\net10.0\ConsoleApp2.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\kwanb\source\repos\ConsoleApp2\ConsoleApp2\obj\Debug\net10.0\ConsoleApp2.AssemblyInfoInputs.cache
-C:\Users\kwanb\source\repos\ConsoleApp2\ConsoleApp2\obj\Debug\net10.0\ConsoleApp2.AssemblyInfo.cs
-C:\Users\kwanb\source\repos\ConsoleApp2\ConsoleApp2\obj\Debug\net10.0\ConsoleApp2.csproj.CoreCompileInputs.cache
